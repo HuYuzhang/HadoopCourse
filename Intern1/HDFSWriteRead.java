@@ -14,37 +14,35 @@ import java.io.InputStreamReader;
 // 通过创建1000个小文件，测试性能。分析Block指令是"hdfs fsck hw2"
 // 结果显式，每个小文件的块大小是11B，这就意味着产生了1000个块，应该不是什么好事情
 public class HDFSWriteRead {
-	public static void main(String[] args){
-        try{
+    public static void main(String[] args) {
+        try {
             Configuration conf = new Configuration();
             conf.set("fs.defaultFS", "hdfs://Master:9000");
             conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
             FileSystem fs = FileSystem.get(conf);
             int fileNum = 1000;
-            for (int i = 0 ; i < fileNum; ++i)
-            {
-            	String fileName = "hw2/" + Integer.toString(i);
-            	Path file = new Path(fileName);
-            	createFile(fs, file);
+            for (int i = 0; i < fileNum; ++i) {
+                String fileName = "hw2/" + Integer.toString(i);
+                Path file = new Path(fileName);
+                createFile(fs, file);
             }
             fs.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public static void createFile(FileSystem fs, Path file) throws IOException{
+    public static void createFile(FileSystem fs, Path file) throws IOException {
         byte[] buff = "Hello World".getBytes();
-        FSDataOutputStream os =fs.create(file);
-        os.write(buff,0,buff.length);
-        System.out.println("Create:"+file.getName());
+        FSDataOutputStream os = fs.create(file);
+        os.write(buff, 0, buff.length);
+        System.out.println("Create:" + file.getName());
         os.close();
     }
-    public static void readFile(FileSystem fs, Path file) throws IOException{
-            FSDataInputStream in = fs.open(file);
-            BufferedReader d = new BufferedReader(new InputStreamReader(in));
-            String content = d.readLine();
-            System.out.println(content);
-            d.close();
-            in.close();
+    public static void readFile(FileSystem fs, Path file) throws IOException {
+        FSDataInputStream in = fs.open(file);
+        BufferedReader d = new BufferedReader(new InputStreamReader( in ));
+        String content = d.readLine();
+        System.out.println(content);
+        d.close(); in .close();
     }
 }
