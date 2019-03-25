@@ -1,6 +1,6 @@
 # 大数据管理
 这里是大三下《大数据管理》课程实习作业，主要是学习Hadoop的使用方式。附上：
-[助教gg提供的Hadoop配置流程](http://www.cnblogs.com/sxdcgaq8080/p/7894828.html)
+[助教gg提供的Hadoop配置流程](http://course.pku.edu.cn/bbcswebdav/pid-499733-dt-content-rid-3933358_2/courses/048-04833520-0006168313-1/hadoop_installation%20%28singlefile%29.html)
 
 *其中有个小错误：*
 ```SHELL
